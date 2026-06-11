@@ -31,3 +31,6 @@ def home(request):
         'posts' : Posts.objects.all()
     }
     return render(request, 'blog/home.html', context)
+
+def newpost(request):
+    return render(request, 'blog/newpost.html')
