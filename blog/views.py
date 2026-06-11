@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from .models import Posts
+
 # Create your views here.
 def signup(request):
     if request.method == 'POST':
@@ -25,4 +27,7 @@ def login(request):
     return render(request, 'blog/login.html')
 
 def home(request):
-    return render(request, 'blog/home.html')
+    context = {
+        'posts' : Posts.objects.all()
+    }
+    return render(request, 'blog/home.html', context)
