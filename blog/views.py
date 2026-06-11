@@ -33,4 +33,10 @@ def home(request):
     return render(request, 'blog/home.html', context)
 
 def newpost(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        post = Posts.objects.create(title=title, content=content, author=request.user)
+        post.save()
+        return redirect('home')
     return render(request, 'blog/newpost.html')
