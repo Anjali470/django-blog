@@ -40,3 +40,7 @@ def newpost(request):
         post.save()
         return redirect('home')
     return render(request, 'blog/newpost.html')
+
+def logout(request):
+    auth_logout(request)
+    return redirect('login')
