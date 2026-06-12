@@ -41,6 +41,12 @@ def newpost(request):
         return redirect('home')
     return render(request, 'blog/newpost.html')
 
+def myposts(request):
+    context = {
+        'posts': Posts.objects.filter(author=request.user)
+    }
+    return render(request, 'blog/mypost.html', context)
+
 def logout(request):
     auth_logout(request)
     return redirect('login')
